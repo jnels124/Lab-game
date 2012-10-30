@@ -7,7 +7,7 @@ import java.awt.event.KeyEvent;
  * @author Josh Gillham
  * @version 10-29-12
  */
-public abstract class UI implements KeyListener{
+public abstract class UI implements KeyListener, GameEvent {
     /** Unused event. */
     public void keyPressed( KeyEvent e ) {}
     

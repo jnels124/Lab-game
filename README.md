@@ -10,21 +10,22 @@ FEATURES:
 -9-tile GUI display.
 
 STRUCTURE:
-Game
+Logic
 -Orchestrates the game logic.
 
 Maze
 -Gets a list of possible moves.
 -Information is stored as a 2D array.
 
-Player
+Character
 -Contains the current position in the maze.
 
 Artist
 -Draws/updates the player on the GUI.
 -Draws/updates the map tiles on the GUI.
 
-GUI
+UI
+-Receives key presses and submits them to the Logic.
 -Shows the player.
 -Shows the player's surroundings.
 -Shows game stats i. e. scores and time limits.

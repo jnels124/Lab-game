@@ -1,0 +1,37 @@
+<project name="Laborinth">
+  <property name="src" location="src"/>
+  <property name="res" location="res"/>
+  <property name="test" location="test"/>
+  <property name="target.dir" location="build"/>
+  <property name="target.out.dir" location="${target.dir}/classes"/>
+
+  <target name="clean">
+    <delete dir="${target.dir}"/>
+    <delete>
+      <fileset dir="${src}" includes="**/*.zip"/>
+      <fileset dir="${src}" includes="**/*.class"/>
+      <fileset dir="${src}" includes="**/*.ctxt"/>
+    </delete>
+  </target>
+
+  <target name="dirs">
+    <mkdir dir="${src}"/>
+    <mkdir dir="${res}"/>
+    <mkdir dir="${test}"/>
+  </target>
+
+  <target name="build" depends="dirs">
+    <mkdir dir="${target.out.dir}"/>
+    <javac srcdir="${src}" destdir="${target.out.dir}">
+    </javac>
+  </target>
+
+  <target name="run" depends="build">
+  </target>
+
+  <target name="doc" >
+  </target>
+
+  <target name="test" depends="build">
+  </target>
+</project>

@@ -16,6 +16,8 @@ Logic
 Maze
 -Gets a list of possible moves.
 -Information is stored as a 2D array.
+-Gest the squares surrounding a certain position.
+
 
 Character
 -Contains the current position in the maze.
@@ -30,5 +32,7 @@ UI
 -Shows the player's surroundings.
 -Shows game stats i. e. scores and time limits.
 
+Messenger:
+-allows the logic to update the UI.
 
 

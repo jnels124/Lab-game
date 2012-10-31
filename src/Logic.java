@@ -23,6 +23,31 @@ public class Logic {
     }
     
     /**
+     * Sets/resets local fields. Starts the game. Called be the constructor.
+     * 
+     * Post Conditions:
+     * -character is at the starting position.
+     * 
+     * @param character is the player.
+     * @param maze is the maze.
+     * 
+     * @throws NullPointerException if either character or maze is null.
+     */
+    public final void newMaze( Character character, Maze maze ) {
+        throw new UnsupportedOperationException();
+    }
+    
+    /**
+     * Sets/resets local fields. Starts the game. Can be called to restart the game.
+     * 
+     * Post Conditions:
+     * -character is at the starting position.
+     */
+    public final void newMaze( ) {
+        throw new UnsupportedOperationException();
+    }
+    
+    /**
      * Causes the player to move in the direction specified.
      * 
      * @param direction is the direction to move.
@@ -30,6 +55,15 @@ public class Logic {
      * @throws BadDirectionException when the direction is not allowed by the maze.
      */
     public void makeMove( Direction direction ) throws BadDirectionException {
+        throw new UnsupportedOperationException();
+    }
+    
+    /**
+     * Gets the character.
+     * 
+     * @return the character.
+     */
+    public Character getCharacter() {
         throw new UnsupportedOperationException();
     }
 }

@@ -1,4 +1,4 @@
-import java.util.Set;
+import java.io.File;
 
 /**
  * Holds the maze in a 2D array.
@@ -10,12 +10,23 @@ public class Maze {
     /**
      * Initializes the class.
      * 
-     * @param columns is the total columns in the maze.
-     * @param rows is the total rows in the maze.
+     * @param maze is the maze as a 2D array.
      * 
-     * @throws IllegalArgumentException if columns or rows are less than 1.
+     * @throws NullPointerException if maze is null or any one of the Wall references is null.
      */
-    public Maze( int columns, int rows ) {
+    public Maze( Wall[][] maze ) {
+        throw new UnsupportedOperationException();
+    }
+    
+    /**
+     * Initializes the class from a maze file.
+     * 
+     * @param mazeFile is the data file to load.
+     * 
+     * @throws NullPointerException if mazeFile is null.
+     * @throws IOException TODO
+     */
+    public Maze( File mazeFile ) {
         throw new UnsupportedOperationException();
     }
     
@@ -39,8 +50,9 @@ public class Maze {
      * @return the set of all possible moves.
      * 
      * @throws NullPointerException when position is null.
+     * @throws OutOfBounds TODO when position is not inside the maze.
      */
-    public Set< Direction > getChoices( Coordinate position ) {
+    public Wall getWall( Coordinate position ) {
         throw new UnsupportedOperationException();
     }
 }

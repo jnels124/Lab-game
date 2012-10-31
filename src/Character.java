@@ -16,5 +16,14 @@ public class Character {
     public Character( Coordinate position ) {
         throw new UnsupportedOperationException();
     }
+    
+    /**
+     * Accesses the position.
+     * 
+     * @return the position.
+     */
+    public Coordinate getCoordinate( ) {
+        throw new UnsupportedOperationException();
+    }
 }
 

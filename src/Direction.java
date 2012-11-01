@@ -6,5 +6,12 @@
  * @version 10-29-12
  */
 public enum Direction {
-    North, East, South, West
+    /** Up. */
+    North, 
+    /** Right. */
+    East, 
+    /** Down. */
+    South, 
+    /** Left. */
+    West
 }

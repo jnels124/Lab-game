@@ -6,9 +6,11 @@ Labyrinth Maze
 DESCRIPTION:
 </h2>
 <p>
-The player will find the exit to a corn maze. The player will use the arrow keys to navigate the twists and turns in the maze. The GUI will show 9-tiles with the player at the center tile. The outer 8 tiles represent the surroundings of the player. As the player navigates through the maze, the GUI will show the tiles changing. The player wins when they exit the maze.
-<br>
-</p>
+The goal will be to find the exit of the maze. The player will use the arrow keys to navigate the twists and turns. The player wins when they exit the maze.
+</p><br>
+<p>
+The GUI will show 9-tiles with the player's character at the center tile. The outer 8 tiles represent the surroundings of the player. As the player navigates through the maze, the GUI will show the tiles changing.
+</p><br>
 
 <h2>
 FEATURES:
@@ -18,6 +20,8 @@ FEATURES:
 -Use the arrow keys to navigate.
 <br>
 -9-tile GUI display.
+<br>
+-Restart the game after winning.
 <br>
 
 <h2>
@@ -32,6 +36,8 @@ Logic
 <br>
 -Calls a GameEvent when the player has moved.
 <br>
+-Places the character into the starting position at the beginning of the game.
+<br>
 
 <h3>
 Maze
@@ -41,6 +47,8 @@ Maze
 -Information is stored as a 2D Wall array.
 <br>
 -Loads a maze from a file.
+<br>
+-Checks if a coordinate is within the bounds of the maze.
 <br>
 
 <h3>
@@ -68,7 +76,7 @@ UI
 <br>
 -Shows the player when they win.
 <br>
--Asks the player if they want to play again.
+-Asks the player if they want to play again and, if so, starts the new game.
 <br>
 
 <h3>
@@ -117,9 +125,13 @@ Game Starts Up
 </h3>
 -main creates/loads the maze.
 <br>
--main creates a new character in the starting position (starting position could be random).
+-main creates a new character.
 <br>
 -main creates a new Logic class
+<br>
+-Logic constructor calls newMaze()
+<br>
+-newMaze() sets the starting position (could be random).
 <br>
 -main creates a new UI.
 <br>

@@ -8,6 +8,8 @@
 public class DesktopStartUp {
     /**
      * Initializes the game and launches the UI.
+     * 
+     * @param args not used.
      */
     static public void main( String[] args ) {
         throw new UnsupportedOperationException();

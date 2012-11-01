@@ -7,12 +7,13 @@ import java.awt.Graphics;
  * @author Josh Gillham
  * @version 10-29-12
  */
-public class TileArtist extends JLabel{
+public class TileArtist extends JLabel {
     /**
      * Initializes the artist class.
      * 
      * @param game used to get the information about the walls.
-     * @param dir is the direction in respect to the character or null for center.
+     * @param dir is the direction in respect to the character or 
+     *  null for center.
      * 
      * @throws NullPointerException when game is null.
      */
@@ -32,8 +33,8 @@ public class TileArtist extends JLabel{
      * -The correct drawing appears.
      * 
      * Testing suggestions:
-     * -Pass mock a graphics class and over ride the lineTo method. Ensure that lineTo is called
-     *  with the correct parameters.
+     * -Pass mock a graphics class and over ride the lineTo method. 
+     *  Ensure that lineTo is called with the correct parameters.
      * 
      * @param g is the graphics canvas.
      * 

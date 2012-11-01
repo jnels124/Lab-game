@@ -7,7 +7,8 @@
  */
 public class GUI extends UI {
     /**
-     * Initializes the GUI class. Gets the JFrame displayed with the correct appearance.
+     * Initializes the GUI class. Gets the JFrame displayed with 
+     *  the correct appearance.
      * 
      * @param game the reference to the game class.
      * 

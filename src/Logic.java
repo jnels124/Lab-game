@@ -7,7 +7,7 @@
  */
 public class Logic {
     /** Used to signal an illegal move direction. */
-    class BadDirectionException extends Exception {}
+    class BadDirectionException extends Exception { }
     
     /**
      * Initializes the class.
@@ -16,7 +16,8 @@ public class Logic {
      * @param maze is the maze.
      * 
      * @throws NullPointerException if either character or maze is null.
-     * @throws IllegalArgumentException if the characters position is off the map.
+     * @throws IllegalArgumentException if the characters position is 
+     *  off the map.
      */
     public Logic( Character character, Maze maze ) {
         throw new UnsupportedOperationException();
@@ -38,7 +39,8 @@ public class Logic {
     }
     
     /**
-     * Sets/resets local fields. Starts the game. Can be called to restart the game.
+     * Sets/resets local fields. Starts the game. Can be called to 
+     *  restart the game.
      * 
      * Post Conditions:
      * -character is at the starting position.
@@ -52,7 +54,8 @@ public class Logic {
      * 
      * @param direction is the direction to move.
      * 
-     * @throws BadDirectionException when the direction is not allowed by the maze.
+     * @throw BadDirectionException when the direction is not 
+     *  allowed by the maze.
      */
     public void makeMove( Direction direction ) throws BadDirectionException {
         throw new UnsupportedOperationException();
@@ -64,6 +67,15 @@ public class Logic {
      * @return the character.
      */
     public Character getCharacter() {
+        throw new UnsupportedOperationException();
+    }
+    
+    /**
+     * Sets the GameEvents listener
+     * 
+     * @param listener the new listener (could be null).
+     */
+    public void setGameEventsListener( GameEvent listener ) {
         throw new UnsupportedOperationException();
     }
 }

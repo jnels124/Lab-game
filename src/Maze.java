@@ -12,7 +12,8 @@ public class Maze {
      * 
      * @param maze is the maze as a 2D array.
      * 
-     * @throws NullPointerException if maze is null or any one of the Wall references is null.
+     * @throws NullPointerException if maze is null or any 
+     *  one of the Wall references is null.
      */
     public Maze( Wall[][] maze ) {
         throw new UnsupportedOperationException();
@@ -23,8 +24,8 @@ public class Maze {
      * 
      * @param mazeFile is the data file to load.
      * 
-     * @throws NullPointerException if mazeFile is null.
-     * @throws IOException TODO
+     * @throw NullPointerException if mazeFile is null.
+     * @throw IOException TODO there is a lot more possibillities.
      */
     public Maze( File mazeFile ) {
         throw new UnsupportedOperationException();
@@ -42,15 +43,15 @@ public class Maze {
     }
     
     /**
-     * Accesses the set of possible directions the player can move from this position on
-     *  the map.
+     * Accesses the set of possible directions the player can move from this 
+     * position on the map.
      * 
      * @param position is the place on the maze to check.
      * 
      * @return the set of all possible moves.
      * 
-     * @throws NullPointerException when position is null.
-     * @throws OutOfBounds TODO when position is not inside the maze.
+     * @throw NullPointerException when position is null.
+     * @throw OutOfBounds TODO when position is not inside the maze.
      */
     public Wall getWall( Coordinate position ) {
         throw new UnsupportedOperationException();

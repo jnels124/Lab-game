@@ -2,11 +2,13 @@
   <property name="src" location="src"/>
   <property name="res" location="res"/>
   <property name="test" location="test"/>
+  <property name="doc.bluej.dir" location="src/doc"/>
   <property name="target.dir" location="build"/>
   <property name="target.out.dir" location="${target.dir}/classes"/>
 
   <target name="clean">
     <delete dir="${target.dir}"/>
+    <delete dir="${doc.bluej.dir}"/>
     <delete>
       <fileset dir="${src}" includes="**/*.zip"/>
       <fileset dir="${src}" includes="**/*.class"/>

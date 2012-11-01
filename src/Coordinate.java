@@ -59,4 +59,15 @@ public class Coordinate {
     public void setRow( int row ) {
         throw new UnsupportedOperationException();
     }
+    
+    /**
+     * Moves the position according to the direction and by 1 unit.
+     * 
+     * @param direction the direction to move the position in.
+     * 
+     * @throw NullPointerException when direction is null.
+     */
+    public void translate( Direction direction ) {
+        throw new UnsupportedOperationException();
+    }
 }

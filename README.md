@@ -17,6 +17,8 @@ We are the Intermediate Game Programming Group at Metropolitan State University 
 <h2>
 CONTRIBUTING:
 </h2>
+Checkout our <a href="https://groups.google.com/d/forum/msudenver-int-game-group">forum</a> to see where we are going with this project.
+<br>
 Anyone is free to contribute. Just follow the steps below:
 <br>
 1. Fork the project.

@@ -1,6 +1,44 @@
 <h1>
 Labyrinth Maze
 </h1>
+<h2>
+Resources
+</h2>
+Download Git Client: <a href="http://windows.github.com">Windows</a>, <a href="http://mac.github.com">Mac</a>
+<br><br>
+Git:
+<a href="http://git-scm.com/book">Git Book</a>, <a href="http://gitready.com">Git Reference</a>, <a href="http://gitfu.wordpress.com">Git Advanced Tricks</a>
+<br><br>
+
+<h2>
+WHO ARE WE:
+</h2>
+We are the Intermediate Game Programming Group at Metropolitan State University of Denver.
+<h2>
+CONTRIBUTING:
+</h2>
+Anyone is free to contribute. Just follow the steps below:
+<br>
+1. Fork the project.
+<br>
+2. Clone your fork.
+<br>
+3. Get to work.
+<br>
+4. On the fork click pull request.
+<br><br>
+
+Alternatively:
+<br>
+1. <a href="https://github.com/jgillham/Lab-game/zipball/master">Download</a> the source.
+<br>
+2. Get to work.
+<br>
+3. Submit your work to this <a href="mailto:usajoshgillham@gmail.com">address</a>.
+<br>
+<p>
+I welcome you to become part of our google discussion group. We will discuss new features, concerns, and bugs. You can also be a decider of our next game project. Find us <a href="https://groups.google.com/d/forum/msudenver-int-game-group">here</a>.
+</p><br>
 
 <h2>
 DESCRIPTION:
@@ -97,8 +135,8 @@ Wall
 GAME SCENARIOS:
 </h2>
 <h4>
-Player presses a key
-<h4>
+Player Presses A Key
+</h4>
 -JFrame class calls event listener UI.keyReleased().
 <br>
 -keyReleased() calls Logic.makeMove().

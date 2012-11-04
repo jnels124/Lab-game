@@ -26,8 +26,9 @@ public class TileArtist extends JLabel {
      * 
      * Outline:
      * .Creates a copy of the character's coordinate.
-     * .Calls the move method in that copy.
+     * .Calls the translate method in that copy.
      * .Retrieves the map's wall for that coordinate.
+     * .Paints according to the wall's blocked directions.
      * 
      * Post Conditions:
      * -The correct drawing appears.

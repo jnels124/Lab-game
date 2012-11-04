@@ -20,18 +20,6 @@ public class Maze {
     }
     
     /**
-     * Initializes the class from a maze file.
-     * 
-     * @param mazeFile is the data file to load.
-     * 
-     * @throw NullPointerException if mazeFile is null.
-     * @throw IOException TODO there is a lot more possibillities.
-     */
-    public Maze( File mazeFile ) {
-        throw new UnsupportedOperationException();
-    }
-    
-    /**
      * Checks if the coordinate can be found in the maze.
      * 
      * @param position is the coordinate to check for.
@@ -51,7 +39,7 @@ public class Maze {
      * @return the set of all possible moves.
      * 
      * @throw NullPointerException when position is null.
-     * @throw OutOfBounds TODO when position is not inside the maze.
+     * @throw OutOfBoundsException when position is not inside the maze.
      */
     public Wall getWall( Coordinate position ) {
         throw new UnsupportedOperationException();

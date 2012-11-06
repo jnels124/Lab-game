@@ -8,10 +8,18 @@
 public enum Direction {
     /** Up. */
     North, 
+    /** North East. */
+    NorthEast,
     /** Right. */
-    East, 
+    East,
+    /** South East. */
+    SouthEast,
     /** Down. */
     South, 
+    /** South West. */
+    SouthWest,
     /** Left. */
-    West
+    West,
+    /** North West. */
+    NorthWest
 }

@@ -1,11 +1,13 @@
-
+import javax.swing.JFrame;
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
 /**
  * Displays a JFrame with the 9-tile maze view.
  * 
  * @author Josh Gillham 
  * @version 10-29-12
  */
-public class GUI extends UI {
+public class GUI extends JFrame implements KeyListener, GameEvent {
     /**
      * Initializes the GUI class. Gets the JFrame displayed with 
      *  the correct appearance.
@@ -15,7 +17,6 @@ public class GUI extends UI {
      * @throws NullPointerException when game is null.
      */
     public GUI( Logic game ) {
-        super( game );
         throw new UnsupportedOperationException();
     }
     
@@ -37,4 +38,19 @@ public class GUI extends UI {
     public void playerMoved( ) {
         throw new UnsupportedOperationException();
     }
+    
+    /** Unused event. */
+    public void keyPressed( KeyEvent e ) { }
+
+    /**
+     * Called when the user releases a key.
+     * 
+     * @param e contains information about the event.
+     */
+    public void keyReleased( KeyEvent e ) {
+        throw new UnsupportedOperationException();
+    }
+
+    /** Unused event. */
+    public void keyTyped( KeyEvent e ) { }
 }

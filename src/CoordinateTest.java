@@ -3,28 +3,23 @@ import org.junit.Test;
 
 import junit.framework.TestCase;
 
-
+/**
+ * Tests Coordinate.
+ * 
+ * @author Alfonso
+ * @version 11-5-12
+ */
 public class CoordinateTest extends TestCase {
-
+    /**
+     * Proves that a Coordinate object can be made without errors.
+     */
 	@Test
 	public void testCoordinate() {
-		//fail("Not yet implemented");
-		  try {
-		      new Coordinate(2,0);
-		    }
-		    catch ( Exception e ) {
-		      fail( "Should not throw an exception." );
-		    }
+        try {
+          new Coordinate(2,0);
+        }
+        catch ( Exception e ) {
+          fail( "Should not throw an exception." );
+        }
 	}
-
-	@Test
-	public void testEquals() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testToString() {
-		fail("Not yet implemented");
-	}
-
 }

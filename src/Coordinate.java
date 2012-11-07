@@ -5,7 +5,7 @@
  * @author Josh Gillham
  * @version 10-29-12
  */
-public class Coordinate {
+public class Coordinate implements Cloneable {
     /**
      * Initializes the class.
      * 

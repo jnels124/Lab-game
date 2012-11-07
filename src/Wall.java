@@ -6,6 +6,7 @@ import java.util.Set;
  * @version 10-29-12
  */
 public class Wall {
+    Set< Direction > directions;
     /**
      * Initializes the class.
      * 
@@ -15,7 +16,7 @@ public class Wall {
      * @throw NullPointerException when directions is null.
      */
     public Wall( Set< Direction > directions ) {
-        throw new UnsupportedOperationException();
+        this.directions = directions;
     }
     
     /**
@@ -24,6 +25,6 @@ public class Wall {
      * @return the list of unblocked directions.
      */
     public Set< Direction > getDirections() {
-        throw new UnsupportedOperationException();
+        return this.directions;
     }
 }

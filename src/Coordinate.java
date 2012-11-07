@@ -58,7 +58,7 @@ public class Coordinate {
         if( this.row < 0 ) { // TODO: verify when exception should actually be thrown 
             throw new UnsupportedOperationException();
         } 
-        return this.row;
+        return this.row;        
     }
     
     /**
@@ -103,6 +103,38 @@ public class Coordinate {
      * @throw NullPointerException when direction is null.
      */
     public void translate( Direction direction ) {
-        throw new UnsupportedOperationException();
+        // throw new UnsupportedOperationException();
+        switch( direction ) {
+            case North : 
+                this.row--;
+                break;
+            case NorthEast : 
+                this.row--;
+                this.column++;
+                break;
+            case NorthWest :
+                this.row--;
+                this.column--;
+                break;
+            case East :
+                this.column++;
+                break;
+            case South :
+                this.row++;
+                break;
+            case SouthEast :
+                this.row++;
+                this.column++;
+                break;
+            case SouthWest : 
+                this.row++;
+                this.column--;
+                break;
+            case West : 
+                this.column--;
+                break;
+            //default :
+        }
+        
     }
 }

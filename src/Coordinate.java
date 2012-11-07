@@ -5,7 +5,20 @@
  * @author Josh Gillham
  * @version 10-29-12
  */
+/*ToDO: Verify when Exception should be thrown for accessors
+ *      Set values for Enum directions so translate can be implemented correct
+   */
 public class Coordinate {
+    /**
+     * Holds the column for the Coordinate Object
+     */
+    private int column;
+    
+    /**
+     * Holds the column for the Coordinate Object
+     */
+    private int row;
+    
     /**
      * Initializes the class.
      * 
@@ -15,7 +28,13 @@ public class Coordinate {
      * @throws IllegalArgumentException when column or row is less than 0.
      */
     public Coordinate( int column, int row ) {
-        throw new UnsupportedOperationException();
+        if ( column < 0 || row < 0 ) {
+            throw new UnsupportedOperationException();
+        } 
+        else {
+            this.column = column;
+            this.row = row;   
+        }
     }
     
     /**
@@ -24,7 +43,10 @@ public class Coordinate {
      * @return the column.
      */
     public int getColumn() {
-        throw new UnsupportedOperationException();
+        if( this.column < 0 ) { // TODO: verify when exception should actually be thrown 
+            throw new UnsupportedOperationException();
+        }
+        return this.column;
     }
     
     /**
@@ -33,7 +55,10 @@ public class Coordinate {
      * @return the row.
      */
     public int getRow() {
-        throw new UnsupportedOperationException();
+        if( this.row < 0 ) { // TODO: verify when exception should actually be thrown 
+            throw new UnsupportedOperationException();
+        } 
+        return this.row;
     }
     
     /**
@@ -45,7 +70,12 @@ public class Coordinate {
      * @param col is the new column.
      */
     public void setColumn( int col ) {
-        throw new UnsupportedOperationException();
+        if( this.column < 0 ) { 
+            throw new UnsupportedOperationException("Column needs to be greater than 0!");
+        } 
+        else {
+            this.column = col;
+        } 
     }
     
     /**
@@ -57,7 +87,12 @@ public class Coordinate {
      * @param row is the new row.
      */
     public void setRow( int row ) {
-        throw new UnsupportedOperationException();
+        if( this.row < 0 ) { 
+            throw new UnsupportedOperationException("Row needs to be greater than 0!");
+        } 
+        else {
+            this.row = row;
+        }
     }
     
     /**

@@ -1,5 +1,5 @@
-
 import org.junit.Test;
+import java.util.*;
 
 import junit.framework.TestCase;
 

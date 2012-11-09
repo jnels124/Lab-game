@@ -70,4 +70,13 @@ public class Coordinate implements Cloneable {
     public void translate( Direction direction ) {
         throw new UnsupportedOperationException();
     }
+    
+    /**
+     * Copies the data inside to a new instance.
+     * 
+     * @return the new instance.
+     */
+    public Coordinate clone() throws CloneNotSupportedException  {
+        return (Coordinate)super.clone();
+    }
 }

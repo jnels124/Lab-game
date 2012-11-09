@@ -6,7 +6,7 @@ import junit.framework.TestCase;
 /**
  * Tests Coordinate.
  * 
- * @author Alfonso
+ * @author Josh Gillham, Alfonso, Jessie
  * @version 11-5-12
  */
 public class CoordinateTest extends TestCase {
@@ -20,6 +20,36 @@ public class CoordinateTest extends TestCase {
         }
         catch ( Exception e ) {
           fail( "Should not throw an exception." );
+        }
+    }
+    
+    /**
+     * Proves the constructor will throw the proper exception.
+     */
+    @Test
+    public void testConstructor_badArguments() {
+        // Verify proper exception thrown on invalid column value
+        try {
+            new Coordinate(-1, 0);
+            fail("Exception should have been thrown");
+        }
+        catch ( UnsupportedOperationException e ) {
+            assertTrue(true);
+        } 
+        catch ( Exception e ) {
+            fail("Incorrect Exception thrown ");
+        }
+        
+        // Verify proper exception thrown on invalid row value
+        try {
+            new Coordinate(0, -1);
+            fail("Exception should have been thrown");
+        }
+        catch ( UnsupportedOperationException e ) {
+            assertTrue(true);
+        } 
+        catch ( Exception e ) {
+            fail("Incorrect Exception thrown ");
         }
     }
     

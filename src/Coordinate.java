@@ -2,10 +2,20 @@
 /**
  * Holds the column and row corresponding to the position in the maze.
  * 
- * @author Josh Gillham
+ * @author Josh Gillham, Jessie
  * @version 10-29-12
  */
 public class Coordinate implements Cloneable {
+    /**
+     * Holds the column for the Coordinate Object
+     */
+    private int column;
+    
+    /**
+     * Holds the column for the Coordinate Object
+     */
+    private int row;
+    
     /**
      * Initializes the class.
      * 
@@ -15,7 +25,8 @@ public class Coordinate implements Cloneable {
      * @throws IllegalArgumentException when column or row is less than 0.
      */
     public Coordinate( int column, int row ) {
-        throw new UnsupportedOperationException();
+        this.setColumn( column );
+        this.setRow( row );
     }
     
     /**
@@ -24,7 +35,7 @@ public class Coordinate implements Cloneable {
      * @return the column.
      */
     public int getColumn() {
-        throw new UnsupportedOperationException();
+        return this.column;
     }
     
     /**
@@ -33,7 +44,7 @@ public class Coordinate implements Cloneable {
      * @return the row.
      */
     public int getRow() {
-        throw new UnsupportedOperationException();
+        return this.row;        
     }
     
     /**
@@ -43,9 +54,16 @@ public class Coordinate implements Cloneable {
      * -this.column is set to col.
      * 
      * @param col is the new column.
+     * 
+     * @throws IllegalArgumentException when column is less than 0.
      */
     public void setColumn( int col ) {
-        throw new UnsupportedOperationException();
+        if( this.column < 0 ) { 
+            throw new IllegalArgumentException("Column needs to be greater than 0!");
+        } 
+        else {
+            this.column = col;
+        } 
     }
     
     /**
@@ -55,9 +73,16 @@ public class Coordinate implements Cloneable {
      * -this.row is set to row.
      * 
      * @param row is the new row.
+     * 
+     * @throws IllegalArgumentException when row is less than 0.
      */
     public void setRow( int row ) {
-        throw new UnsupportedOperationException();
+        if( this.row < 0 ) { 
+            throw new IllegalArgumentException("Row needs to be greater than 0!");
+        } 
+        else {
+            this.row = row;
+        }
     }
     
     /**
@@ -68,7 +93,39 @@ public class Coordinate implements Cloneable {
      * @throw NullPointerException when direction is null.
      */
     public void translate( Direction direction ) {
-        throw new UnsupportedOperationException();
+        switch( direction ) {
+            case North : 
+                this.row--;
+                break;
+            case NorthEast : 
+                this.row--;
+                this.column++;
+                break;
+            case NorthWest :
+                this.row--;
+                this.column--;
+                break;
+            case East :
+                this.column++;
+                break;
+            case South :
+                this.row++;
+                break;
+            case SouthEast :
+                this.row++;
+                this.column++;
+                break;
+            case SouthWest : 
+                this.row++;
+                this.column--;
+                break;
+            case West : 
+                this.column--;
+                break;
+            default:
+                throw new UnsupportedOperationException();
+        }
+        
     }
     
     /**

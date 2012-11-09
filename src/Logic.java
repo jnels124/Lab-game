@@ -2,18 +2,23 @@
 /**
  * Acts as the central hub of the game.
  * 
- * @author Josh Gillham
- * @version 10-29-12
+ * @author Josh Gillham, Jesse Nelson
+ * @version 11/9/2012 Windows 8(x64) Java 1.7 U9
  */
+
+/* TODO : implement makeMove and setGameEventsListener
+   */
 public class Logic {
+    private Maze maze;
+    private Character character;
     /** Used to signal an illegal move direction. */
     class BadDirectionException extends Exception { }
     
     /**
      * Initializes the class.
-     * 
+     *      
      * Post Conditions:
-     * -character is at the starting position.
+     * -character is at the starting position.          
      * 
      * @param character is the player.
      * @param maze is the maze.
@@ -23,7 +28,18 @@ public class Logic {
      *  off the map.
      */
     public Logic( Character character, Maze maze ) {
-        throw new UnsupportedOperationException();
+        if( character == null || maze == null ) {
+            throw new NullPointerException
+            ("Instance of Logic was instantiated with a null value!");
+        }
+        
+        if( !maze.contains(character.getCoordinate()) ) {
+            throw new IllegalArgumentException
+            ("The character is not on the map!");
+        } 
+        
+        this.character = character;
+        this.maze = maze;
     }
     
     /**
@@ -31,7 +47,7 @@ public class Logic {
      * 
      * @param direction is the direction to move.
      * 
-     * @throw BadDirectionException when the direction is not 
+     * @throws BadDirectionException when the direction is not 
      *  allowed by the maze.
      */
     public void makeMove( Direction direction ) throws BadDirectionException {
@@ -44,7 +60,7 @@ public class Logic {
      * @return the character.
      */
     public Character getCharacter() {
-        throw new UnsupportedOperationException();
+        return this.character;
     }
     
     /**
@@ -53,7 +69,7 @@ public class Logic {
      * @return the maze.
      */
     public Maze getMaze() {
-        throw new UnsupportedOperationException();
+        return this.maze;
     }
     
     /**

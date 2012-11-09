@@ -12,6 +12,9 @@ public class Logic {
     /**
      * Initializes the class.
      * 
+     * Post Conditions:
+     * -character is at the starting position.
+     * 
      * @param character is the player.
      * @param maze is the maze.
      * 
@@ -20,32 +23,6 @@ public class Logic {
      *  off the map.
      */
     public Logic( Character character, Maze maze ) {
-        throw new UnsupportedOperationException();
-    }
-    
-    /**
-     * Sets/resets local fields. Starts the game. Called be the constructor.
-     * 
-     * Post Conditions:
-     * -character is at the starting position.
-     * 
-     * @param character is the player.
-     * @param maze is the maze.
-     * 
-     * @throws NullPointerException if either character or maze is null.
-     */
-    public final void newMaze( Character character, Maze maze ) {
-        throw new UnsupportedOperationException();
-    }
-    
-    /**
-     * Sets/resets local fields. Starts the game. Can be called to 
-     *  restart the game.
-     * 
-     * Post Conditions:
-     * -character is at the starting position.
-     */
-    public final void newMaze( ) {
         throw new UnsupportedOperationException();
     }
     
@@ -67,6 +44,15 @@ public class Logic {
      * @return the character.
      */
     public Character getCharacter() {
+        throw new UnsupportedOperationException();
+    }
+    
+    /**
+     * Accesses the maze.
+     * 
+     * @return the maze.
+     */
+    public Maze getMaze() {
         throw new UnsupportedOperationException();
     }
     

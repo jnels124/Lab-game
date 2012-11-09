@@ -6,7 +6,7 @@ import junit.framework.TestCase;
 /**
  * Tests Coordinate.
  * 
- * @author Josh Gillham, Alfonso, Jessie
+ * @author Josh Gillham, Alfonso, Jesse Nelson
  * @version 11-5-12
  */
 public class CoordinateTest extends TestCase {

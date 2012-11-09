@@ -2,7 +2,7 @@
 /**
  * Holds the column and row corresponding to the position in the maze.
  * 
- * @author Josh Gillham, Jessie
+ * @author Josh Gillham, Jesse Nelson
  * @version 10-29-12
  */
 public class Coordinate implements Cloneable {

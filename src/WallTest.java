@@ -8,10 +8,10 @@ import java.util.Set;
 import java.util.TreeSet;
 
 /**
- * The test class WallTest.
+ * This tests Wall.
  *
  * @author  Josh Gillham
- * @version (a version number or a date)
+ * @version 11-8-12
  */
 public class WallTest {
     /**

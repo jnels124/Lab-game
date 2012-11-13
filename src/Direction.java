@@ -1,4 +1,4 @@
-
+import java.util.EnumSet;
 /**
  * Each direction corresponds to compass vector.
  * 
@@ -22,4 +22,9 @@ public enum Direction {
     West,
     /** Up Left. */
     NorthWest
+    ;
+    /** Holds the four cardinal directions. */
+    static public final EnumSet< Direction > CARDINAL = EnumSet.of( 
+        North, East, South, West
+    );
 }

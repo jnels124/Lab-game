@@ -6,6 +6,7 @@
  * @version 10-29-12
  */
 public class Character {
+    private Coordinate position;
     /**
      * Initializes the class.
      * 
@@ -14,7 +15,7 @@ public class Character {
      * @throws NullPointerException when position is null.
      */
     public Character( Coordinate position ) {
-        throw new UnsupportedOperationException();
+        this.position = position;
     }
     
     /**
@@ -23,7 +24,7 @@ public class Character {
      * @return the position.
      */
     public Coordinate getCoordinate( ) {
-        throw new UnsupportedOperationException();
+        return position;
     }
 }
 

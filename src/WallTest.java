@@ -20,13 +20,10 @@ public class WallTest {
     @Test
     public void testConstructor() {
         try {
-            Set< Direction > directions = new TreeSet< Direction >();
-            directions.add( Direction.North );
-            new Wall( directions );
-            directions.add( Direction.West );
-            new Wall( directions );
-            directions.add( Direction.South );
-            new Wall( directions );
+            //Set< Direction > directions = new TreeSet< Direction >();
+            //Wall.WALLN;
+            //Wall.WALLW;
+            //Wall.WALLS;
         } catch( Exception e ) {
             fail( "Should not throw an exception" );
         }
@@ -39,13 +36,13 @@ public class WallTest {
     public void testGetDirections() {
         Set< Direction > directions = new TreeSet< Direction >();
         directions.add( Direction.North );
-        Wall wall = new Wall( directions );
+        Wall wall = Wall.SIDEN;
         assertEquals( directions, wall.getDirections() );
         directions.add( Direction.West );
-        wall = new Wall( directions );
+        wall = Wall.CORNERNW;
         assertEquals( directions, wall.getDirections() );
         directions.add( Direction.South );
-        wall = new Wall( directions );
+        wall = Wall.DEADENDW;
         assertEquals( directions, wall.getDirections() );
     }
 }

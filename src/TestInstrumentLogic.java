@@ -18,9 +18,9 @@ public class TestInstrumentLogic extends Logic {
     static public Set< Direction > side = new TreeSet< Direction >();
     /** Holds the test labyrinth. */
     static public Wall[][] lab = {
-        { new Wall( deadEnd ), new Wall( side ), new Wall( hall ) },
-        { new Wall( deadEnd ), new Wall( hall ), new Wall( corner ) },
-        { new Wall( deadEnd ), new Wall( corner ), new Wall( hall ) },
+      { Wall.DEADENDN, Wall.CORNERNE, Wall.HALLNS },
+      { Wall.DEADENDN, Wall.SIDEN, Wall.HALLNS },
+      { Wall.DEADENDN, Wall.CORNERNE, Wall.HALLNS },
     };
     /** Holds the starting coordinate. */
     static Coordinate start = new Coordinate( 1, 1 );

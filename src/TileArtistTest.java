@@ -27,63 +27,11 @@ public class TileArtistTest {
     };
     
     /**
-     * Provides a way to force Logic to behave in ways 
-     *  that help the tests.
-     */
-    class InstrumentLogic extends Logic {
-        /** Provide empty constructor. */
-        public InstrumentLogic() {
-            super( chr, maze );
-        }
-    }
-    /** Holds the dead end. */
-    Set< Direction > deadEnd = new TreeSet< Direction >();
-    /** Holds the hall way. */
-    Set< Direction > hall = new TreeSet< Direction >();
-    /** Holds the corner. */
-    Set< Direction > corner = new TreeSet< Direction >();
-    /** Holds the side. */
-    Set< Direction > side = new TreeSet< Direction >();
-    /** Holds the test labyrinth. */
-    Wall[][] lab = {
-      { new Wall( deadEnd ), new Wall( corner ), new Wall( hall ) },
-      { new Wall( deadEnd ), new Wall( side ), new Wall( hall ) },
-      { new Wall( deadEnd ), new Wall( corner ), new Wall( hall ) },
-    };
-    /** Holds the starting coordinate. */
-    Coordinate start = new Coordinate( 1, 1 );
-    /** Holds the test character. */
-    Character chr = new Character( start );
-    /** Holds the test maze. */
-    Maze maze = new Maze( lab );
-    
-    /**
-     * Creates the objects needed to run tests.
-     */
-    public TileArtistTest() {
-        // Compose a dead end with 3 walls.
-        deadEnd.add( Direction.North );
-        deadEnd.add( Direction.East );
-        deadEnd.add( Direction.West );
-        
-        // Compose a hall way with 2 paralell walls.
-        hall.add( Direction.East );
-        hall.add( Direction.West );
-        
-        // Compose a corner with 2 adjacent walls.
-        corner.add( Direction.North );
-        corner.add( Direction.East );
-        
-        // Compose a side with only 1 wall.
-        side.add( Direction.North );
-    }   
-    
-    /**
      * Proves that the TileArtist can be created for any direction.
      */
     @Test
     public void testConstructor() {
-        Logic game = new InstrumentLogic();
+        Logic game = new TestInstrumentLogic();
         try {
             // For each direction, make sure there are no exceptions.
             for( Direction dir: Direction.values() ) {
@@ -103,7 +51,7 @@ public class TileArtistTest {
      */
     @Test
     public void testPaintComponent_DrawLines() {
-        Logic game = new InstrumentLogic( );
+        TestInstrumentLogic game = new TestInstrumentLogic( );
         MockDebugGraphics g;
         // For each direction, make sure paintComponent draws the correct
         //  number of lines.
@@ -114,7 +62,7 @@ public class TileArtistTest {
                 // Move the coordinate to the correct position.
                 coord.translate( dir );
                 // Find the number of walls for that coordinate.
-                int size = maze.getWall( coord ).getDirections().size();
+                int size = game.maze.getWall( coord ).getDirections().size();
                 // Call paintComponent.
                 new TileArtist( game, Direction.North ).paintComponent( g = new MockDebugGraphics() );
                 // paintComponent() should have called drawLine for each wall in coordinate.

@@ -28,7 +28,7 @@ public class TileArtist extends JLabel {
      */
     public TileArtist( Logic game, Direction dir ) {
         //store the parameters locally for use by paintComponent
-        localGame = new Logic();
+        //localGame = new Logic();
         this.localGame = game;
         direction = dir;
         }

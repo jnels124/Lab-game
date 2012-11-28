@@ -22,9 +22,13 @@ public class GUI extends JFrame implements KeyListener, GameEvent {
     private JPanel          mainPanel, gamePanel;
     private JLabel          title, lSide, rSide, board, C, E, W, N, NW, NE, S, SE, SW;
     private final int       WINDOW_WIDTH = 650, WINDOW_HEIGHT = 250;
+    private Logic game;
     
     public GUI( Logic game ) {
         super("Maze Game");
+        if( game == null )
+            throw new NullPointerException( );
+        this.game = game;
         setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         buildPanel();
@@ -32,7 +36,6 @@ public class GUI extends JFrame implements KeyListener, GameEvent {
         add(mainPanel);
         setLocationRelativeTo(null);
         setVisible(true);
-        //throw new UnsupportedOperationException();
     }
     
     /**
@@ -47,15 +50,17 @@ public class GUI extends JFrame implements KeyListener, GameEvent {
         lSide = new JLabel("Left side bar.");
         rSide = new JLabel("Right side bar.");
         board = new JLabel("Message Board (possibly)");
-        N     = new JLabel("North tile");
-        NW    = new JLabel("North West tile");
-        NE    = new JLabel("North East tile");
-        E     = new JLabel("East tile");
-        W     = new JLabel("West tile");
-        C     = new JLabel("Center tile");
-        S     = new JLabel("South tile");
-        SW    = new JLabel("South West tile");
-        SE    = new JLabel("South East tile");
+        // Game viewing area.
+        // Don't change the order of creation.
+        N     = new TileArtist( this.game, Direction.North );
+        NW    = new TileArtist( this.game, Direction.NorthWest );
+        NE    = new TileArtist( this.game, Direction.NorthEast );
+        E     = new TileArtist( this.game, Direction.East );
+        W     = new TileArtist( this.game, Direction.West );
+        C     = new TileArtist( this.game, null ); // Null for center
+        S     = new TileArtist( this.game, Direction.South );
+        SW    = new TileArtist( this.game, Direction.SouthWest );
+        SE    = new TileArtist( this.game, Direction.SouthEast );
         
         //Creates the panels
         mainPanel = new JPanel();

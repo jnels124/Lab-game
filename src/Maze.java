@@ -26,7 +26,7 @@ public class Maze {
      * 
      * @return true if the position can be found in the maze OR false otherwise.
      * 
-     * @throw NullPointerException when position is null
+     * @throws NullPointerException when position is null
      */
     public boolean contains( Coordinate position ) { 
         if( position == null ) {
@@ -48,7 +48,7 @@ public class Maze {
      * 
      * @return the set of all possible moves.
      * 
-     * @throw ArrayIndexOutOfBoundsException when position is not inside the maze.
+     * @throws ArrayIndexOutOfBoundsException when position is not inside the maze.
      */
     public Wall getWall( Coordinate position ) {
         if( !contains( position ) ) {

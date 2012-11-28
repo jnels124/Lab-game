@@ -27,11 +27,12 @@ public class TileArtist extends JLabel {
      * @throws NullPointerException when game is null.
      */
     public TileArtist( Logic game, Direction dir ) {
-        //store the parameters locally for use by paintComponent
-        //localGame = new Logic();
+        if( game == null )
+            throw new NullPointerException( "TileArtist initialized with null game." );
+        this.setMinimumSize( new java.awt.Dimension( 32, 32 ) );
         this.localGame = game;
         direction = dir;
-        }
+    }
         
     /**
      * Ask for walls corresponding to the passed in coordinates
@@ -43,14 +44,6 @@ public class TileArtist extends JLabel {
         Coordinate newCoords = new Coordinate(x,y);
          this.localGame.getMaze().getWall(newCoords);
          return null;
-    }
-    
-    /**
-     * Takes the Set<Direction> and decides which image should be loaded, or if we arent using images, where to draw the lines to indicate walls
-     * @param Set<Directions> will include information on where the walls should be placed
-     */
-    public void drawWalls(Set<Direction> walls){
-        
     }
     
     
@@ -76,96 +69,46 @@ public class TileArtist extends JLabel {
      */
     @Override
     public void paintComponent( Graphics g ) {
+        super.paintComponent( g );
+        g.drawLine( 0, 0, getWidth(), 0 );
+        g.drawLine( 0, getHeight() - 1, getWidth(), getHeight() - 1 );
+        g.drawLine( 0, 0, 0, getHeight() );
+        g.drawLine( getWidth() - 1, 0, getWidth() - 1, getHeight() );
         //make sure Logic game is not null!
         if(this.localGame==null){
             throw new NullPointerException();
         }
-        // here TileArtist decides what to do with the paramaters passed in using a switch statement
-        switch(this.direction){
-            case NorthWest: System.out.println("NorthWest Direction has been selected");
-                            //get players coordinates
-                            int row = localGame.getCharacter().getCoordinate().getRow();
-                            int column = localGame.getCharacter().getCoordinate().getColumn();
-                            //this should now correspond to the coordinates of the NW tile, another class should check that these statements dont go out of bounds of the maze
-                            row--;
-                            column--;
-                            //get the location of walls for this tile using the new coords
-                            //paint the correct 'walls'
-                            drawWalls(getSetOfWalls(column, row));
-                            break;
-                
-            case North: System.out.println("North Direction has been selected");
-                            int row2 = localGame.getCharacter().getCoordinate().getRow();
-                            int column2 = localGame.getCharacter().getCoordinate().getColumn();
-                            //this should now correspond to the coordinates of the N tile, another class should check that these statements dont go out of bounds of the maze
-                            row2--;
-                            //get the location of walls for this tile using the new coords
-                            //paint the correct 'walls'
-                            drawWalls(getSetOfWalls(column2, row2));
-                            break;
-                
-            case NorthEast: System.out.println("NorthEast Direction has been selected");
-                            int row3 = localGame.getCharacter().getCoordinate().getRow();
-                            int column3 = localGame.getCharacter().getCoordinate().getColumn();
-                            //this should now correspond to the coordinates of the NE tile, another class should check that these statements dont go out of bounds of the maze
-                            row3--;
-                            column3++;
-                            //get the location of walls for this tile using the new coords
-                            //paint the correct 'walls'
-                            drawWalls(getSetOfWalls(column3, row3));
-                            break;
-                
-            case East: System.out.println("East Direction has been selected");
-                            int row4 = localGame.getCharacter().getCoordinate().getRow();
-                            int column4 = localGame.getCharacter().getCoordinate().getColumn();
-                            //this should now correspond to the coordinates of the E tile, another class should check that these statements dont go out of bounds of the maze
-                            column4++;
-                            //get the location of walls for this tile using the new coords
-                            //paint the correct 'walls'
-                            drawWalls(getSetOfWalls(column4, row4));
-                            break;
-                
-            case SouthEast: System.out.println("SouthEast Direction has been selected");
-                            int row5 = localGame.getCharacter().getCoordinate().getRow();
-                            int column5 = localGame.getCharacter().getCoordinate().getColumn();
-                            //this should now correspond to the coordinates of the SE tile, another class should check that these statements dont go out of bounds of the maze
-                            row5++;
-                            column5++;
-                            //get the location of walls for this tile using the new coords
-                            //paint the correct 'walls'
-                            drawWalls(getSetOfWalls(column5, row5));
-                            break;
-                
-            case South: System.out.println("South Direction has been selected");
-                            int row6 = localGame.getCharacter().getCoordinate().getRow();
-                            int column6 = localGame.getCharacter().getCoordinate().getColumn();
-                            //this should now correspond to the coordinates of the S tile, another class should check that these statements dont go out of bounds of the maze
-                            row6++;
-                            //get the location of walls for this tile using the new coords
-                            //paint the correct 'walls'
-                            drawWalls(getSetOfWalls(column6, row6));
-                            break;
-                
-            case SouthWest: System.out.println("SouthWest Direction has been selected");
-                            int row7 = localGame.getCharacter().getCoordinate().getRow();
-                            int column7 = localGame.getCharacter().getCoordinate().getColumn();
-                            //this should now correspond to the coordinates of the SW tile, another class should check that these statements dont go out of bounds of the maze
-                            row7++;
-                            column7--;
-                            //get the location of walls for this tile using the new coords
-                            //paint the correct 'walls'
-                            drawWalls(getSetOfWalls(column7, row7));
-                            break; 
-                
-            case West: System.out.println("West Direction has been selected");
-                            int row8 = localGame.getCharacter().getCoordinate().getRow();
-                            int column8 = localGame.getCharacter().getCoordinate().getColumn();
-                            //this should now correspond to the coordinates of the NW tile, another class should check that these statements dont go out of bounds of the maze
-                            column8--;
-                            //get the location of walls for this tile using the new coords
-                            //paint the correct 'walls'
-                            drawWalls(getSetOfWalls(column8, row8));
-                            break;    
+        try {
+            // Get the position which corresponds to this tile.
+            Coordinate relPosition = this.localGame.getCharacter().getCoordinate().clone();
+            // nulls mean center so we don't need to change the position.
+            if( this.direction != null ) {
+                relPosition.translate( this.direction );
+            } else {
+                java.awt.image.BufferedImage img = javax.imageio.ImageIO.read( new java.io.File( "chr.png" ) );
+                g.drawImage( img, getWidth() / 2 - img.getWidth() / 2, getHeight() / 2 - img.getHeight() / 2, null );
+            }
+            // Get the list of walls for the position which corresponds to the tile.
+            Set< Direction > walls = this.localGame.getMaze().getWall( relPosition ).getDirections();
+            // Draw each wall.
+            for( Direction wall : walls ) {
+                switch( wall ) {
+                    case North:
+                        g.drawLine( 5, 5, getWidth() - 5, 5 );
+                        break;
+                    case East:
+                        g.drawLine( 5, 5, 5, getHeight() - 5 );
+                        break;
+                    case South:
+                        g.drawLine( 5, getHeight() - 5, getWidth() - 5, getHeight() - 5 );
+                        break;
+                    case West:
+                        g.drawLine( getWidth() - 5, 5, getWidth() - 5, getHeight() - 5 );
+                        break;
+                }
+            }
+        } catch ( Exception e ) {
+            e.printStackTrace();
         }
     }
 }

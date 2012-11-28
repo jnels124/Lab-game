@@ -1,4 +1,4 @@
-
+import java.util.Set;
 /**
  * Acts as the central hub of the game.
  * 
@@ -11,6 +11,7 @@
 public class Logic {
     private Maze maze;
     private Character character;
+    
     /** Used to signal an illegal move direction. */
     class BadDirectionException extends Exception { }
     
@@ -33,7 +34,7 @@ public class Logic {
             ("Instance of Logic was instantiated with a null value!");
         }
         
-        if( !maze.contains(character.getCoordinate()) ) {
+        if( !maze.contains( character.getCoordinate() ) ) {
             throw new IllegalArgumentException
             ("The character is not on the map!");
         } 
@@ -51,7 +52,21 @@ public class Logic {
      *  allowed by the maze.
      */
     public void makeMove( Direction direction ) throws BadDirectionException {
-        throw new UnsupportedOperationException();
+        if( direction == null ) {
+            throw new NullPointerException( "makeMove was called with a null value" );
+        }
+        
+        Set< Direction > directions = this.maze.getWall( this.character.getCoordinate() ).getDirections();
+        
+        if( !directions.contains( direction ) ) {
+            throw new BadDirectionException();
+        }
+        
+        this.character.getCoordinate().translate( direction );
+        
+        if(!this.maze.contains(this.character.getCoordinate())) {
+            //player wins          
+        }//else do nothing
     }
     
     /**

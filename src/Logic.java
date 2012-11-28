@@ -17,9 +17,9 @@ public class Logic {
     
     /**
      * Initializes the class.
-     *      
+     * 
      * Post Conditions:
-     * -character is at the starting position.          
+     * -character is at the starting position.
      * 
      * @param character is the player.
      * @param maze is the maze.
@@ -48,7 +48,7 @@ public class Logic {
      * 
      * @param direction is the direction to move.
      * 
-     * @throws BadDirectionException when the direction is not 
+     * @throws BadDirectionException when the direction is not
      *  allowed by the maze.
      */
     public void makeMove( Direction direction ) throws BadDirectionException {

@@ -115,7 +115,25 @@ public class GUI extends JFrame implements KeyListener, GameEvent {
      * @param e contains information about the event.
      */
     public void keyReleased( KeyEvent e ) {
-        throw new UnsupportedOperationException();
+        try {
+            switch( e.getKeyCode() ) {
+                case KeyEvent.VK_UP:
+                    this.game.makeMove( Direction.North );
+                    break;
+                case KeyEvent.VK_DOWN:
+                    this.game.makeMove( Direction.South );
+                    break;
+                case KeyEvent.VK_LEFT:
+                    this.game.makeMove( Direction.East );
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    this.game.makeMove( Direction.West );
+                    break;
+            }
+        } catch ( Logic.BadDirectionException ex ) {
+            System.out.println( "Bad direction." );
+            // Maybe later we can play a sound
+        }
     }
 
     /** Unused event. */

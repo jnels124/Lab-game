@@ -20,6 +20,7 @@ public class DesktopStartUp {
         };
         Logic game = new Logic( new Character( new Coordinate( 1, 1 ) ), new Maze( lab ) );
         GUI ui = new GUI( game );
+        game.setGameEventsListener( ui );
     }
     
     

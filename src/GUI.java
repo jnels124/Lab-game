@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
+
 /**
  * Displays a JFrame with the 9-tile maze view.
  * 
@@ -36,6 +37,8 @@ public class GUI extends JFrame implements KeyListener, GameEvent {
         add(mainPanel);
         setLocationRelativeTo(null);
         setVisible(true);
+        // Call keyPressed() in this class.
+        this.addKeyListener(this);
     }
     
     /**
@@ -103,7 +106,8 @@ public class GUI extends JFrame implements KeyListener, GameEvent {
      * -each tile's repaint() method is called.
      */
     public void playerMoved( ) {
-        throw new UnsupportedOperationException();
+        // Draw the new postion.
+        this.repaint();
     }
     
     /** Unused event. */
@@ -124,10 +128,10 @@ public class GUI extends JFrame implements KeyListener, GameEvent {
                     this.game.makeMove( Direction.South );
                     break;
                 case KeyEvent.VK_LEFT:
-                    this.game.makeMove( Direction.East );
+                    this.game.makeMove( Direction.West );
                     break;
                 case KeyEvent.VK_RIGHT:
-                    this.game.makeMove( Direction.West );
+                    this.game.makeMove( Direction.East );
                     break;
             }
         } catch ( Logic.BadDirectionException ex ) {

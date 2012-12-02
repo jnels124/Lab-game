@@ -11,6 +11,7 @@ import java.util.Set;
 public class Logic {
     private Maze maze;
     private Character character;
+    private GameEvent gameEventHandler = null;
     
     /** Used to signal an illegal move direction. */
     class BadDirectionException extends Exception { }
@@ -58,9 +59,13 @@ public class Logic {
         
         Set< Direction > directions = this.maze.getWall( this.character.getCoordinate() ).getDirections();
         
-        if( !directions.contains( direction ) ) {
+        if( directions.contains( direction ) ) {
             throw new BadDirectionException();
         }
+        
+        // Update the GUI
+        if ( this.gameEventHandler != null )
+                this.gameEventHandler.playerMoved();
         
         this.character.getCoordinate().translate( direction );
         
@@ -93,7 +98,7 @@ public class Logic {
      * @param listener the new listener (could be null).
      */
     public void setGameEventsListener( GameEvent listener ) {
-        throw new UnsupportedOperationException();
+        this.gameEventHandler = listener;
     }
 }
 

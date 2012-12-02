@@ -88,8 +88,15 @@ public class TileArtist extends JLabel {
                 java.awt.image.BufferedImage img = javax.imageio.ImageIO.read( new java.io.File( "chr.png" ) );
                 g.drawImage( img, getWidth() / 2 - img.getWidth() / 2, getHeight() / 2 - img.getHeight() / 2, null );
             }
+            Maze maze = this.localGame.getMaze();
+            
+            // Only paint tiles which are on the map.
+            if ( !maze.contains( relPosition ) ) {
+                // Paint empty squares.
+                return;
+            }
             // Get the list of walls for the position which corresponds to the tile.
-            Set< Direction > walls = this.localGame.getMaze().getWall( relPosition ).getDirections();
+            Set< Direction > walls = maze.getWall( relPosition ).getDirections();
             // Draw each wall.
             for( Direction wall : walls ) {
                 switch( wall ) {
@@ -97,13 +104,13 @@ public class TileArtist extends JLabel {
                         g.drawLine( 5, 5, getWidth() - 5, 5 );
                         break;
                     case East:
-                        g.drawLine( 5, 5, 5, getHeight() - 5 );
+                        g.drawLine( getWidth() - 5, 5, getWidth() - 5, getHeight() - 5 );
                         break;
                     case South:
                         g.drawLine( 5, getHeight() - 5, getWidth() - 5, getHeight() - 5 );
                         break;
                     case West:
-                        g.drawLine( getWidth() - 5, 5, getWidth() - 5, getHeight() - 5 );
+                        g.drawLine( 5, 5, 5, getHeight() - 5 );
                         break;
                 }
             }

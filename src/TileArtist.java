@@ -81,20 +81,31 @@ public class TileArtist extends JLabel {
         try {
             // Get the position which corresponds to this tile.
             Coordinate relPosition = this.localGame.getCharacter().getCoordinate().clone();
+            
+            Maze maze = this.localGame.getMaze();
+            
             // nulls mean center so we don't need to change the position.
             if( this.direction != null ) {
                 relPosition.translate( this.direction );
-            } else {
-                java.awt.image.BufferedImage img = javax.imageio.ImageIO.read( new java.io.File( "chr.png" ) );
-                g.drawImage( img, getWidth() / 2 - img.getWidth() / 2, getHeight() / 2 - img.getHeight() / 2, null );
             }
-            Maze maze = this.localGame.getMaze();
             
             // Only paint tiles which are on the map.
             if ( !maze.contains( relPosition ) ) {
-                // Paint empty squares.
+                g.setColor( java.awt.Color.DARK_GRAY );
+                g.fillRect( 0, 0, getWidth() - 1, getHeight() - 1 );
                 return;
+            } else {
+                g.setColor( java.awt.Color.LIGHT_GRAY );
+                g.fillRect( 0, 0, getWidth() - 1, getHeight() - 1 );
             }
+            
+            // Draw the character image for the center tile.
+            if( this.direction == null ) {
+                java.awt.image.BufferedImage img = javax.imageio.ImageIO.read( new java.io.File( "chr.png" ) );
+                g.drawImage( img, getWidth() / 2 - img.getWidth() / 2, getHeight() / 2 - img.getHeight() / 2, null );
+            }
+            
+            g.setColor( java.awt.Color.BLACK );
             // Get the list of walls for the position which corresponds to the tile.
             Set< Direction > walls = maze.getWall( relPosition ).getDirections();
             // Draw each wall.

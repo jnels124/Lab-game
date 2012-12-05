@@ -37,7 +37,7 @@ public class Maze {
            return false;
         } 
         
-        return position.getRow() < this.maze[0].length && position.getColumn() < this.maze.length;       
+        return position.getRow() < this.maze.length && position.getColumn() < this.maze[0].length;       
     }
     
     /**

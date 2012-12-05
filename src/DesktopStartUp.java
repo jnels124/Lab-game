@@ -14,9 +14,14 @@ public class DesktopStartUp {
      */
     static public void main( String[] args ) {
         Wall[][] lab = {
-            { Wall.CORNERNW, Wall.SIDEN, Wall.CORNERNE  },
-            { Wall.SIDEW, Wall.EMPTY, Wall.SIDEE  },
-            { Wall.CORNERSW, Wall.SIDES, Wall.CORNERSW  }
+            { Wall.CORNERNW, Wall.HALLEW, Wall.CORNERNE  },
+            { Wall.HALLNS, Wall.DEADENDN, Wall.HALLNS  },
+            { Wall.HALLNS, Wall.CORNERSW, Wall.CORNERSE },
+            { Wall.CORNERSW, Wall.SIDEN, Wall.DEADENDE },
+            { Wall.DEADENDW, Wall.EMPTY, Wall.DEADENDE },
+            { Wall.DEADENDW, Wall.SIDEE, Wall.BLOCK },
+            { Wall.CORNERNW, Wall.EMPTY, Wall.DEADENDE },
+            { Wall.DEADENDS, Wall.SIDEW, Wall.SIDES }
         };
         Logic game = new Logic( new Character( new Coordinate( 1, 1 ) ), new Maze( lab ) );
         GUI ui = new GUI( game );

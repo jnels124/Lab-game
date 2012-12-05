@@ -97,7 +97,7 @@ public class GUI extends JFrame implements KeyListener, GameEvent {
      * -the GUI shows the player they win.
      */
     public void playerWins( ) {
-        throw new UnsupportedOperationException();
+        JOptionPane.showMessageDialog( null, "Player wins!" );
     }
     /**
      * Tells the UI that the player has moved. The GUI repaints the tiles.
@@ -135,7 +135,7 @@ public class GUI extends JFrame implements KeyListener, GameEvent {
                     break;
             }
         } catch ( Logic.BadDirectionException ex ) {
-            System.out.println( "Bad direction." );
+            JOptionPane.showMessageDialog( null, "Bad direction!" );
             // Maybe later we can play a sound
         }
     }

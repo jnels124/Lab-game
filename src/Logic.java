@@ -9,9 +9,14 @@ import java.util.Set;
 /* TODO : implement makeMove and setGameEventsListener
    */
 public class Logic {
+    enum GameState {
+        PLAYING, FINISHED;
+    }
+    private GameState gameStatus = GameState.PLAYING;
     private Maze maze;
     private Character character;
     private GameEvent gameEventHandler = null;
+    
     
     /** Used to signal an illegal move direction. */
     class BadDirectionException extends Exception { }
@@ -57,6 +62,9 @@ public class Logic {
             throw new NullPointerException( "makeMove was called with a null value" );
         }
         
+        if ( gameStatus != GameState.PLAYING )
+            return;
+        
         Set< Direction > directions = this.maze.getWall( this.character.getCoordinate() ).getDirections();
         
         if( directions.contains( direction ) ) {
@@ -65,12 +73,13 @@ public class Logic {
         
         // Update the GUI
         if ( this.gameEventHandler != null )
-                this.gameEventHandler.playerMoved();
+            this.gameEventHandler.playerMoved();
         
         this.character.getCoordinate().translate( direction );
         
         if(!this.maze.contains(this.character.getCoordinate())) {
-            //player wins          
+            gameStatus = GameState.FINISHED;
+            this.gameEventHandler.playerWins();
         }//else do nothing
     }
     

@@ -26,7 +26,7 @@ public enum Wall {
     // #8 A West wall.
     SIDEW( EnumSet.of( Direction.West ) ),
     // #9 A corner on the Norht-West side.
-    CORNERNW( EnumSet.of( Direction.East, Direction.West ) ),
+    CORNERNW( EnumSet.of( Direction.North, Direction.West ) ),
     // #10 A hallway going from North to South or vice-versa.
     HALLNS( EnumSet.of( Direction.East, Direction.West ) ),
     // #11 A North dead-end.
@@ -36,7 +36,7 @@ public enum Wall {
     // #13 A West dead-end.
     DEADENDW( EnumSet.of( Direction.North, Direction.South, Direction.West ) ),
     // #14 A South dead-end.
-    DEADENDs( EnumSet.of( Direction.South, Direction.East, Direction.West ) ),
+    DEADENDS( EnumSet.of( Direction.South, Direction.East, Direction.West ) ),
     // #15 A closed block.
     BLOCK( EnumSet.allOf( Direction.class ) )
     ;

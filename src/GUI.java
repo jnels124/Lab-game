@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
+
 /**
  * Displays a JFrame with the 9-tile maze view.
  * 
@@ -22,9 +23,13 @@ public class GUI extends JFrame implements KeyListener, GameEvent {
     private JPanel          mainPanel, gamePanel;
     private JLabel          title, lSide, rSide, board, C, E, W, N, NW, NE, S, SE, SW;
     private final int       WINDOW_WIDTH = 650, WINDOW_HEIGHT = 250;
+    private Logic game;
     
     public GUI( Logic game ) {
         super("Maze Game");
+        if( game == null )
+            throw new NullPointerException( );
+        this.game = game;
         setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         buildPanel();
@@ -32,7 +37,8 @@ public class GUI extends JFrame implements KeyListener, GameEvent {
         add(mainPanel);
         setLocationRelativeTo(null);
         setVisible(true);
-        //throw new UnsupportedOperationException();
+        // Call keyPressed() in this class.
+        this.addKeyListener(this);
     }
     
     /**
@@ -47,15 +53,17 @@ public class GUI extends JFrame implements KeyListener, GameEvent {
         lSide = new JLabel("Left side bar.");
         rSide = new JLabel("Right side bar.");
         board = new JLabel("Message Board (possibly)");
-        N     = new JLabel("North tile");
-        NW    = new JLabel("North West tile");
-        NE    = new JLabel("North East tile");
-        E     = new JLabel("East tile");
-        W     = new JLabel("West tile");
-        C     = new JLabel("Center tile");
-        S     = new JLabel("South tile");
-        SW    = new JLabel("South West tile");
-        SE    = new JLabel("South East tile");
+        // Game viewing area.
+        // Don't change the order of creation.
+        N     = new TileArtist( this.game, Direction.North );
+        NW    = new TileArtist( this.game, Direction.NorthWest );
+        NE    = new TileArtist( this.game, Direction.NorthEast );
+        E     = new TileArtist( this.game, Direction.East );
+        W     = new TileArtist( this.game, Direction.West );
+        C     = new TileArtist( this.game, null ); // Null for center
+        S     = new TileArtist( this.game, Direction.South );
+        SW    = new TileArtist( this.game, Direction.SouthWest );
+        SE    = new TileArtist( this.game, Direction.SouthEast );
         
         //Creates the panels
         mainPanel = new JPanel();
@@ -89,7 +97,7 @@ public class GUI extends JFrame implements KeyListener, GameEvent {
      * -the GUI shows the player they win.
      */
     public void playerWins( ) {
-        throw new UnsupportedOperationException();
+        JOptionPane.showMessageDialog( null, "Player wins!" );
     }
     /**
      * Tells the UI that the player has moved. The GUI repaints the tiles.
@@ -98,7 +106,8 @@ public class GUI extends JFrame implements KeyListener, GameEvent {
      * -each tile's repaint() method is called.
      */
     public void playerMoved( ) {
-        throw new UnsupportedOperationException();
+        // Draw the new postion.
+        this.repaint();
     }
     
     /** Unused event. */
@@ -110,7 +119,25 @@ public class GUI extends JFrame implements KeyListener, GameEvent {
      * @param e contains information about the event.
      */
     public void keyReleased( KeyEvent e ) {
-        throw new UnsupportedOperationException();
+        try {
+            switch( e.getKeyCode() ) {
+                case KeyEvent.VK_UP:
+                    this.game.makeMove( Direction.North );
+                    break;
+                case KeyEvent.VK_DOWN:
+                    this.game.makeMove( Direction.South );
+                    break;
+                case KeyEvent.VK_LEFT:
+                    this.game.makeMove( Direction.West );
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    this.game.makeMove( Direction.East );
+                    break;
+            }
+        } catch ( Logic.BadDirectionException ex ) {
+            JOptionPane.showMessageDialog( null, "Bad direction!" );
+            // Maybe later we can play a sound
+        }
     }
 
     /** Unused event. */

@@ -1,13 +1,22 @@
 import javax.swing.JLabel;
 import java.awt.Graphics;
+import java.net.URL;
+import java.awt.image.BufferedImage;
+import java.util.Set;
 
 /**
  * Handles drawing resources.
  * 
- * @author Josh Gillham
- * @version 10-29-12
+ * @author Angel Preciado, Josh Gillham
+ * @version 10-29-12.2
  */
 public class TileArtist extends JLabel {
+    private URL url;
+    private BufferedImage img;
+    private Logic localGame;
+    private Direction direction;
+    private Set<Direction> walls;
+    
     /**
      * Initializes the artist class.
      * 
@@ -18,8 +27,25 @@ public class TileArtist extends JLabel {
      * @throws NullPointerException when game is null.
      */
     public TileArtist( Logic game, Direction dir ) {
-        throw new UnsupportedOperationException();
+        if( game == null )
+            throw new NullPointerException( "TileArtist initialized with null game." );
+        this.setMinimumSize( new java.awt.Dimension( 32, 32 ) );
+        this.localGame = game;
+        direction = dir;
     }
+        
+    /**
+     * Ask for walls corresponding to the passed in coordinates
+     * @param int y the row value of the coordinate
+     * @param int x the column value of the coordinate
+     * @return set walls these contain the Direction types that tell us where the walls should be
+     */
+    public Set<Direction> getSetOfWalls(int x, int y){
+        Coordinate newCoords = new Coordinate(x,y);
+         this.localGame.getMaze().getWall(newCoords);
+         return null;
+    }
+    
     
     /**
      * Draws the correct tile in respect to the character.
@@ -43,6 +69,64 @@ public class TileArtist extends JLabel {
      */
     @Override
     public void paintComponent( Graphics g ) {
-        throw new UnsupportedOperationException();
+        super.paintComponent( g );
+        g.drawLine( 0, 0, getWidth(), 0 );
+        g.drawLine( 0, getHeight() - 1, getWidth(), getHeight() - 1 );
+        g.drawLine( 0, 0, 0, getHeight() );
+        g.drawLine( getWidth() - 1, 0, getWidth() - 1, getHeight() );
+        //make sure Logic game is not null!
+        if(this.localGame==null){
+            throw new NullPointerException();
+        }
+        try {
+            // Get the position which corresponds to this tile.
+            Coordinate relPosition = this.localGame.getCharacter().getCoordinate().clone();
+            
+            Maze maze = this.localGame.getMaze();
+            
+            // nulls mean center so we don't need to change the position.
+            if( this.direction != null ) {
+                relPosition.translate( this.direction );
+            }
+            
+            // Only paint tiles which are on the map.
+            if ( !maze.contains( relPosition ) ) {
+                g.setColor( java.awt.Color.DARK_GRAY );
+                g.fillRect( 0, 0, getWidth() - 1, getHeight() - 1 );
+                return;
+            } else {
+                g.setColor( java.awt.Color.LIGHT_GRAY );
+                g.fillRect( 0, 0, getWidth() - 1, getHeight() - 1 );
+            }
+            
+            // Draw the character image for the center tile.
+            if( this.direction == null ) {
+                java.awt.image.BufferedImage img = javax.imageio.ImageIO.read( new java.io.File( "chr.png" ) );
+                g.drawImage( img, getWidth() / 2 - img.getWidth() / 2, getHeight() / 2 - img.getHeight() / 2, null );
+            }
+            
+            g.setColor( java.awt.Color.BLACK );
+            // Get the list of walls for the position which corresponds to the tile.
+            Set< Direction > walls = maze.getWall( relPosition ).getDirections();
+            // Draw each wall.
+            for( Direction wall : walls ) {
+                switch( wall ) {
+                    case North:
+                        g.drawLine( 5, 5, getWidth() - 5, 5 );
+                        break;
+                    case East:
+                        g.drawLine( getWidth() - 5, 5, getWidth() - 5, getHeight() - 5 );
+                        break;
+                    case South:
+                        g.drawLine( 5, getHeight() - 5, getWidth() - 5, getHeight() - 5 );
+                        break;
+                    case West:
+                        g.drawLine( 5, 5, 5, getHeight() - 5 );
+                        break;
+                }
+            }
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        }
     }
 }

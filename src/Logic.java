@@ -6,20 +6,27 @@ import java.util.Set;
  * @version 11/9/2012 Windows 8(x64) Java 1.7 U9
  */
 
+
 /* TODO : implement makeMove and setGameEventsListener
    */
 public class Logic {
+    enum GameState {
+        PLAYING, FINISHED;
+    }
+    private GameState gameStatus = GameState.PLAYING;
     private Maze maze;
     private Character character;
+    private GameEvent gameEventHandler = null;
+    
     
     /** Used to signal an illegal move direction. */
     class BadDirectionException extends Exception { }
     
     /**
      * Initializes the class.
-     *      
+     * 
      * Post Conditions:
-     * -character is at the starting position.          
+     * -character is at the starting position.
      * 
      * @param character is the player.
      * @param maze is the maze.
@@ -48,7 +55,7 @@ public class Logic {
      * 
      * @param direction is the direction to move.
      * 
-     * @throws BadDirectionException when the direction is not 
+     * @throws BadDirectionException when the direction is not
      *  allowed by the maze.
      */
     public void makeMove( Direction direction ) throws BadDirectionException {
@@ -56,16 +63,24 @@ public class Logic {
             throw new NullPointerException( "makeMove was called with a null value" );
         }
         
+        if ( gameStatus != GameState.PLAYING )
+            return;
+        
         Set< Direction > directions = this.maze.getWall( this.character.getCoordinate() ).getDirections();
         
-        if( !directions.contains( direction ) ) {
+        if( directions.contains( direction ) ) {
             throw new BadDirectionException();
         }
+        
+        // Update the GUI
+        if ( this.gameEventHandler != null )
+            this.gameEventHandler.playerMoved();
         
         this.character.getCoordinate().translate( direction );
         
         if(!this.maze.contains(this.character.getCoordinate())) {
-            //player wins          
+            gameStatus = GameState.FINISHED;
+            this.gameEventHandler.playerWins();
         }//else do nothing
     }
     
@@ -93,7 +108,6 @@ public class Logic {
      * @param listener the new listener (could be null).
      */
     public void setGameEventsListener( GameEvent listener ) {
-        throw new UnsupportedOperationException();
+        this.gameEventHandler = listener;
     }
 }
-
